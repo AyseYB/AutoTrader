@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.autotrader</groupId>
+    <artifactId>AutoTrader</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.7.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <parallel>method</parallel>
+                    <forkMode>perthread</forkMode>
+                    <threadCount>5</threadCount>
+                    <includes>
+
+
+                        <include>**/*Runner*.java</include>
+                        <!--                       <include>**/FailedTestRunner.java</include>-->
+                    </includes>
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+     <plugin>
+    <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>3.10.0</version>
+         <executions>
+             <execution>
+                 <id>execution</id>
+                 <phase>verify</phase>
+                 <goals>
+                     <goal>generate</goal>
+                 </goals>
+                 <configuration>
+                     <projectName>AutoTrader.com Smoke Test</projectName>
+                     <outputDirectory>${project.build.directory}/myReports</outputDirectory>
+                     <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                 </configuration>
+             </execution>
+         </executions>
+
+
+     </plugin>
+
+
+        </plugins>
+    </build>
+
+
+</project>
+
